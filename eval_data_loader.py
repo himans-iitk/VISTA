@@ -66,4 +66,4 @@ class POPEDataSet(Dataset):
         query = self.query_list[index]
         label = self.label_list[index]
 
-        return {"image": image, "query": query, "label": label}
+        return {"image": image, "query": query, "label": label, "image_path": image_path}
