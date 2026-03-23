@@ -103,11 +103,26 @@ def load_model(model):
 
 
 def prepare_llava_inputs(template, query, image, tokenizer):
-    image_tensor = image["pixel_values"][0]
+    pv = image["pixel_values"]
+    # pixel_values can be: Tensor [B,C,H,W], Tensor [C,H,W], or list of (C,H,W) arrays
+    if isinstance(pv, torch.Tensor):
+        if pv.ndim == 4:
+            image_tensor = pv[0]  # [C, H, W] — drop batch
+        elif pv.ndim == 3:
+            image_tensor = pv  # already one image [C, H, W]; do NOT index [0] (that would be one channel!)
+        else:
+            raise ValueError(f"Unexpected pixel_values tensor shape: {pv.shape}")
+    else:
+        image_tensor = pv[0]  # list/tuple: first image
+
     if type(image_tensor) != torch.Tensor:
         image_tensor = torch.tensor(image_tensor, dtype=torch.float32).to("cuda")
-        if len(image_tensor.shape) == 3:
-            image_tensor = image_tensor.unsqueeze(0)
+    else:
+        image_tensor = image_tensor.to("cuda")
+
+    # Vision tower expects [B, C, H, W]
+    if image_tensor.ndim == 3:
+        image_tensor = image_tensor.unsqueeze(0)
     qu = [template.replace("<question>", q) for q in query]
     batch_size = len(query)
 

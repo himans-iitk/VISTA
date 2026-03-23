@@ -1,0 +1,141 @@
+image_index,disease,ground_truth_labels,baseline_yesno,baseline_region,vista_yesno,vista_region,gt_yesno
+00001373_052.png,Atelectasis,Effusion|Infiltration,No,N/A,Yes,(not specified),No
+00001373_052.png,Consolidation,Effusion|Infiltration,No,N/A,Yes,(not specified),No
+00001373_052.png,Infiltration,Effusion|Infiltration,Yes,(not specified),Yes,(not specified),Yes
+00001373_052.png,Pneumothorax,Effusion|Infiltration,No,N/A,Yes,(not specified),No
+00001373_052.png,Edema,Effusion|Infiltration,No,N/A,No,N/A,No
+00001373_052.png,Emphysema,Effusion|Infiltration,No,N/A,Yes,(not specified),No
+00001373_052.png,Fibrosis,Effusion|Infiltration,No,N/A,Yes,(not specified),No
+00001373_052.png,Effusion,Effusion|Infiltration,No,N/A,Yes,(not specified),Yes
+00001373_052.png,Pneumonia,Effusion|Infiltration,No,N/A,Yes,(not specified),No
+00001373_052.png,Pleural_Thickening,Effusion|Infiltration,No,N/A,Yes,(not specified),No
+00001373_052.png,Cardiomegaly,Effusion|Infiltration,No,N/A,Yes,(not specified),No
+00001373_052.png,Nodule,Effusion|Infiltration,No,N/A,Yes,(not specified),No
+00001373_052.png,Mass,Effusion|Infiltration,No,N/A,Yes,(not specified),No
+00001373_052.png,Hernia,Effusion|Infiltration,No,N/A,No,N/A,No
+00001385_004.png,Atelectasis,Cardiomegaly,No,N/A,Yes,(not specified),No
+00001385_004.png,Consolidation,Cardiomegaly,No,N/A,Yes,(not specified),No
+00001385_004.png,Infiltration,Cardiomegaly,Yes,(not specified),Yes,(not specified),No
+00001385_004.png,Pneumothorax,Cardiomegaly,No,N/A,Yes,(not specified),No
+00001385_004.png,Edema,Cardiomegaly,No,N/A,No,N/A,No
+00001385_004.png,Emphysema,Cardiomegaly,No,N/A,Yes,(not specified),No
+00001385_004.png,Fibrosis,Cardiomegaly,No,N/A,Yes,(not specified),No
+00001385_004.png,Effusion,Cardiomegaly,No,N/A,Yes,(not specified),No
+00001385_004.png,Pneumonia,Cardiomegaly,No,N/A,No,N/A,No
+00001385_004.png,Pleural_Thickening,Cardiomegaly,No,N/A,Yes,(not specified),No
+00001385_004.png,Cardiomegaly,Cardiomegaly,No,N/A,Yes,(not specified),Yes
+00001385_004.png,Nodule,Cardiomegaly,No,N/A,Yes,(not specified),No
+00001385_004.png,Mass,Cardiomegaly,No,N/A,Yes,(not specified),No
+00001385_004.png,Hernia,Cardiomegaly,No,N/A,No,N/A,No
+00001426_000.png,Atelectasis,No Finding,Yes,(not specified),Yes,(not specified),No
+00001426_000.png,Consolidation,No Finding,Yes,(not specified),Yes,(not specified),No
+00001426_000.png,Infiltration,No Finding,Yes,(not specified),Yes,(not specified),No
+00001426_000.png,Pneumothorax,No Finding,Yes,(not specified),Yes,(not specified),No
+00001426_000.png,Edema,No Finding,No,N/A,Yes,(not specified),No
+00001426_000.png,Emphysema,No Finding,No,N/A,Yes,(not specified),No
+00001426_000.png,Fibrosis,No Finding,No,N/A,Yes,(not specified),No
+00001426_000.png,Effusion,No Finding,Yes,(not specified),Yes,(not specified),No
+00001426_000.png,Pneumonia,No Finding,No,N/A,Yes,(not specified),No
+00001426_000.png,Pleural_Thickening,No Finding,Yes,(not specified),Yes,(not specified),No
+00001426_000.png,Cardiomegaly,No Finding,Yes,(not specified),Yes,(not specified),No
+00001426_000.png,Nodule,No Finding,Yes,(not specified),Yes,(not specified),No
+00001426_000.png,Mass,No Finding,Yes,(not specified),Yes,(not specified),No
+00001426_000.png,Hernia,No Finding,Yes,(not specified),Yes,(not specified),No
+00001429_007.png,Atelectasis,Mass|Pneumothorax,Yes,(not specified),Yes,(not specified),No
+00001429_007.png,Consolidation,Mass|Pneumothorax,Yes,(not specified),Yes,(not specified),No
+00001429_007.png,Infiltration,Mass|Pneumothorax,Yes,(not specified),Yes,(not specified),No
+00001429_007.png,Pneumothorax,Mass|Pneumothorax,Yes,(not specified),Yes,(not specified),Yes
+00001429_007.png,Edema,Mass|Pneumothorax,No,N/A,Yes,(not specified),No
+00001429_007.png,Emphysema,Mass|Pneumothorax,Yes,(not specified),Yes,(not specified),No
+00001429_007.png,Fibrosis,Mass|Pneumothorax,Yes,(not specified),Yes,(not specified),No
+00001429_007.png,Effusion,Mass|Pneumothorax,Yes,(not specified),Yes,(not specified),No
+00001429_007.png,Pneumonia,Mass|Pneumothorax,No,N/A,Yes,(not specified),No
+00001429_007.png,Pleural_Thickening,Mass|Pneumothorax,Yes,(not specified),Yes,(not specified),No
+00001429_007.png,Cardiomegaly,Mass|Pneumothorax,Yes,(not specified),Yes,(not specified),No
+00001429_007.png,Nodule,Mass|Pneumothorax,Yes,(not specified),Yes,(not specified),No
+00001429_007.png,Mass,Mass|Pneumothorax,Yes,(not specified),Yes,(not specified),Yes
+00001429_007.png,Hernia,Mass|Pneumothorax,Yes,(not specified),Yes,(not specified),No
+00001437_042.png,Atelectasis,Atelectasis|Infiltration,No,N/A,Yes,(not specified),Yes
+00001437_042.png,Consolidation,Atelectasis|Infiltration,No,N/A,Yes,(not specified),No
+00001437_042.png,Infiltration,Atelectasis|Infiltration,Yes,(not specified),Yes,(not specified),Yes
+00001437_042.png,Pneumothorax,Atelectasis|Infiltration,No,N/A,Yes,(not specified),No
+00001437_042.png,Edema,Atelectasis|Infiltration,No,N/A,No,N/A,No
+00001437_042.png,Emphysema,Atelectasis|Infiltration,No,N/A,Yes,(not specified),No
+00001437_042.png,Fibrosis,Atelectasis|Infiltration,No,N/A,Yes,(not specified),No
+00001437_042.png,Effusion,Atelectasis|Infiltration,No,N/A,Yes,(not specified),No
+00001437_042.png,Pneumonia,Atelectasis|Infiltration,No,N/A,No,N/A,No
+00001437_042.png,Pleural_Thickening,Atelectasis|Infiltration,Yes,(not specified),Yes,(not specified),No
+00001437_042.png,Cardiomegaly,Atelectasis|Infiltration,No,N/A,Yes,(not specified),No
+00001437_042.png,Nodule,Atelectasis|Infiltration,No,N/A,Yes,(not specified),No
+00001437_042.png,Mass,Atelectasis|Infiltration,No,N/A,Yes,(not specified),No
+00001437_042.png,Hernia,Atelectasis|Infiltration,No,N/A,No,N/A,No
+00001500_001.png,Atelectasis,No Finding,No,N/A,Yes,(not specified),No
+00001500_001.png,Consolidation,No Finding,No,N/A,Yes,(not specified),No
+00001500_001.png,Infiltration,No Finding,No,N/A,Yes,(not specified),No
+00001500_001.png,Pneumothorax,No Finding,No,N/A,Yes,(not specified),No
+00001500_001.png,Edema,No Finding,No,N/A,No,N/A,No
+00001500_001.png,Emphysema,No Finding,No,N/A,Yes,(not specified),No
+00001500_001.png,Fibrosis,No Finding,No,N/A,Yes,(not specified),No
+00001500_001.png,Effusion,No Finding,No,N/A,Yes,(not specified),No
+00001500_001.png,Pneumonia,No Finding,No,N/A,Yes,(not specified),No
+00001500_001.png,Pleural_Thickening,No Finding,Yes,(not specified),Yes,(not specified),No
+00001500_001.png,Cardiomegaly,No Finding,No,N/A,Yes,(not specified),No
+00001500_001.png,Nodule,No Finding,No,N/A,Yes,(not specified),No
+00001500_001.png,Mass,No Finding,No,N/A,Yes,(not specified),No
+00001500_001.png,Hernia,No Finding,No,N/A,No,N/A,No
+00001501_008.png,Atelectasis,No Finding,Yes,(not specified),Yes,(not specified),No
+00001501_008.png,Consolidation,No Finding,Yes,(not specified),Yes,(not specified),No
+00001501_008.png,Infiltration,No Finding,Yes,(not specified),Yes,(not specified),No
+00001501_008.png,Pneumothorax,No Finding,No,N/A,Yes,(not specified),No
+00001501_008.png,Edema,No Finding,No,N/A,No,N/A,No
+00001501_008.png,Emphysema,No Finding,Yes,(not specified),Yes,(not specified),No
+00001501_008.png,Fibrosis,No Finding,Yes,(not specified),Yes,(not specified),No
+00001501_008.png,Effusion,No Finding,Yes,(not specified),Yes,(not specified),No
+00001501_008.png,Pneumonia,No Finding,No,N/A,Yes,(not specified),No
+00001501_008.png,Pleural_Thickening,No Finding,Yes,(not specified),Yes,(not specified),No
+00001501_008.png,Cardiomegaly,No Finding,No,N/A,Yes,(not specified),No
+00001501_008.png,Nodule,No Finding,Yes,(not specified),Yes,(not specified),No
+00001501_008.png,Mass,No Finding,Yes,(not specified),Yes,(not specified),No
+00001501_008.png,Hernia,No Finding,No,N/A,No,N/A,No
+00001517_005.png,Atelectasis,Atelectasis|Mass,No,N/A,Yes,(not specified),Yes
+00001517_005.png,Consolidation,Atelectasis|Mass,No,N/A,Yes,(not specified),No
+00001517_005.png,Infiltration,Atelectasis|Mass,No,N/A,Yes,(not specified),No
+00001517_005.png,Pneumothorax,Atelectasis|Mass,No,N/A,Yes,(not specified),No
+00001517_005.png,Edema,Atelectasis|Mass,No,N/A,No,N/A,No
+00001517_005.png,Emphysema,Atelectasis|Mass,No,N/A,Yes,(not specified),No
+00001517_005.png,Fibrosis,Atelectasis|Mass,No,N/A,Yes,(not specified),No
+00001517_005.png,Effusion,Atelectasis|Mass,No,N/A,Yes,(not specified),No
+00001517_005.png,Pneumonia,Atelectasis|Mass,No,N/A,Yes,(not specified),No
+00001517_005.png,Pleural_Thickening,Atelectasis|Mass,Yes,(not specified),Yes,(not specified),No
+00001517_005.png,Cardiomegaly,Atelectasis|Mass,No,N/A,Yes,(not specified),No
+00001517_005.png,Nodule,Atelectasis|Mass,No,N/A,Yes,(not specified),No
+00001517_005.png,Mass,Atelectasis|Mass,No,N/A,Yes,(not specified),Yes
+00001517_005.png,Hernia,Atelectasis|Mass,No,N/A,No,N/A,No
+00001518_000.png,Atelectasis,No Finding,Yes,(not specified),Yes,(not specified),No
+00001518_000.png,Consolidation,No Finding,Yes,(not specified),Yes,(not specified),No
+00001518_000.png,Infiltration,No Finding,No,N/A,Yes,(not specified),No
+00001518_000.png,Pneumothorax,No Finding,No,N/A,Yes,(not specified),No
+00001518_000.png,Edema,No Finding,No,N/A,No,N/A,No
+00001518_000.png,Emphysema,No Finding,No,N/A,Yes,(not specified),No
+00001518_000.png,Fibrosis,No Finding,No,N/A,Yes,(not specified),No
+00001518_000.png,Effusion,No Finding,No,N/A,Yes,(not specified),No
+00001518_000.png,Pneumonia,No Finding,No,N/A,Yes,(not specified),No
+00001518_000.png,Pleural_Thickening,No Finding,Yes,(not specified),Yes,(not specified),No
+00001518_000.png,Cardiomegaly,No Finding,Yes,(not specified),Yes,(not specified),No
+00001518_000.png,Nodule,No Finding,Yes,(not specified),Yes,(not specified),No
+00001518_000.png,Mass,No Finding,Yes,(not specified),Yes,(not specified),No
+00001518_000.png,Hernia,No Finding,No,N/A,No,N/A,No
+00001521_000.png,Atelectasis,No Finding,Yes,(not specified),Yes,(not specified),No
+00001521_000.png,Consolidation,No Finding,Yes,(not specified),Yes,(not specified),No
+00001521_000.png,Infiltration,No Finding,Yes,(not specified),Yes,(not specified),No
+00001521_000.png,Pneumothorax,No Finding,No,N/A,Yes,(not specified),No
+00001521_000.png,Edema,No Finding,No,N/A,Yes,(not specified),No
+00001521_000.png,Emphysema,No Finding,No,N/A,Yes,(not specified),No
+00001521_000.png,Fibrosis,No Finding,Yes,(not specified),Yes,(not specified),No
+00001521_000.png,Effusion,No Finding,Yes,(not specified),Yes,(not specified),No
+00001521_000.png,Pneumonia,No Finding,No,N/A,Yes,(not specified),No
+00001521_000.png,Pleural_Thickening,No Finding,Yes,(not specified),Yes,(not specified),No
+00001521_000.png,Cardiomegaly,No Finding,No,N/A,Yes,(not specified),No
+00001521_000.png,Nodule,No Finding,Yes,(not specified),Yes,(not specified),No
+00001521_000.png,Mass,No Finding,No,N/A,Yes,(not specified),No
+00001521_000.png,Hernia,No Finding,No,N/A,No,N/A,No
