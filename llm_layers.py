@@ -17,16 +17,23 @@ class VSVLayer(nn.Module):
             x = x.float()
             original_norm = torch.norm(x, p=2, dim=-1, keepdim=True)
             y = 0
+            # In multi-GPU/model-parallel runs, hidden states can live on different
+            # devices across layers. Align VSV to current activation device.
+            vsv = self.vsv.to(device=x.device, dtype=x.dtype)
             if self.simple_mode:
-                vsv = self.vsv[0]
+                vsv = vsv[0]
                 lam_schedule = self.lam[0]
                 y = lam_schedule * F.normalize(vsv, dim=-1).repeat(1,x.shape[1],1)
                 x = F.normalize(F.normalize(x, p=2, dim=-1) + y, p=2, dim=-1) * original_norm
             else:
-                for i in range(len(self.vsv)):
-                    lambda_sim = 1.0 + torch.max(torch.tensor([0.]).to(x.device), F.cosine_similarity(x, -self.vsv[i][None,None,:], dim=-1)).unsqueeze(-1)
-                    y += self.lam[i] * lambda_sim * F.normalize(self.vsv[i], dim=-1).repeat(1,x.shape[1],1)
-                y = y/len(self.vsv)
+                zero = torch.tensor([0.0], device=x.device, dtype=x.dtype)
+                for i in range(len(vsv)):
+                    lambda_sim = 1.0 + torch.max(
+                        zero,
+                        F.cosine_similarity(x, -vsv[i][None, None, :], dim=-1),
+                    ).unsqueeze(-1)
+                    y += self.lam[i] * lambda_sim * F.normalize(vsv[i], dim=-1).repeat(1, x.shape[1], 1)
+                y = y / len(vsv)
                 x = F.normalize(F.normalize(x.float(), p=2, dim=-1) + y, p=2, dim=-1) * original_norm
 
             return x.half()

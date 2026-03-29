@@ -20,6 +20,33 @@ from minigpt4.common.eval_utils import init_model
 from mllm.models import load_pretrained
 
 
+def resolve_llava_model_path():
+    """Resolve a usable LLaVA model source.
+
+    Priority:
+    1) Explicit env override: VISTA_LLAVA_MODEL
+    2) Common local checkpoints
+    3) Hugging Face repo id fallback
+    """
+    env_path = os.environ.get("VISTA_LLAVA_MODEL", "").strip()
+    if env_path:
+        return os.path.expanduser(env_path)
+
+    candidates = [
+        "../download_models/llava-v1.5-7b",
+        "./download_models/llava-v1.5-7b",
+        "~/download_models/llava-v1.5-7b",
+        "/workspace/download_models/llava-v1.5-7b",
+    ]
+    for cand in candidates:
+        expanded = os.path.expanduser(cand)
+        if os.path.exists(expanded):
+            return expanded
+
+    # Hub fallback avoids invalid local-path errors.
+    return "liuhaotian/llava-v1.5-7b"
+
+
 def load_model_args_from_yaml(yaml_path):
     with open(yaml_path, "r") as file:
         data = yaml.safe_load(file)
@@ -83,7 +110,7 @@ class InstructBlipConfig:
 
 def load_model(model):
     if model == "llava-1.5":
-        model_path = os.path.expanduser("/path/to/llava-v1.5-7b")
+        model_path = resolve_llava_model_path()
         return load_llava_model(model_path)
 
     elif model == "minigpt4":
@@ -323,7 +350,7 @@ class ModelLoader:
 
     def load_model(self):
         if self.model_name == "llava-1.5":
-            model_path = os.path.expanduser("../download_models/llava-v1.5-7b")
+            model_path = resolve_llava_model_path()
             self.tokenizer, self.vlm_model, self.image_processor, self.llm_model = (
                 load_llava_model(model_path)
             )
@@ -443,6 +470,31 @@ class ModelLoader:
                 return {"inputs_embeds": neg_embeds, "attention_mask": attn_mask}
             else:
                 raise ValueError(f"Unknown model: {self.model_name}")
+
+    def prepare_llava_kwargs_from_processed(self, template, query, image_processed):
+        """Build LLaVA LLM kwargs (input_ids + images) from an already-processed vision batch.
+
+        Used for VSV negative pairs that use a real image (e.g. matched non-fracture) instead of
+        the null-image / text-only negative from prepare_null_prompt.
+        """
+        if self.model_name != "llava-1.5":
+            raise NotImplementedError(
+                "prepare_llava_kwargs_from_processed is only implemented for llava-1.5"
+            )
+        _, _, _, kwargs = prepare_llava_inputs(
+            template, query, image_processed, self.tokenizer
+        )
+        dev = next(self.llm_model.parameters()).device
+        out = {}
+        for k, v in kwargs.items():
+            if torch.is_tensor(v):
+                if k == "images":
+                    out[k] = v.to(device=dev).half()
+                else:
+                    out[k] = v.to(device=dev)
+            else:
+                out[k] = v
+        return out
 
 
     def decode(self, output_ids):
