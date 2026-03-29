@@ -129,7 +129,17 @@ def load_model(model):
         raise ValueError(f"Unknown model: {model}")
 
 
-def prepare_llava_inputs(template, query, image, tokenizer):
+def prepare_llava_inputs(template, query, image, tokenizer, device=None):
+    """Build LLaVA kwargs. Pass ``device`` matching ``llm_model`` (e.g. cuda:1) so inputs are not left on cuda:0."""
+    if device is None:
+        device = (
+            torch.device("cuda", torch.cuda.current_device())
+            if torch.cuda.is_available()
+            else torch.device("cpu")
+        )
+    elif isinstance(device, str):
+        device = torch.device(device)
+
     pv = image["pixel_values"]
     # pixel_values can be: Tensor [B,C,H,W], Tensor [C,H,W], or list of (C,H,W) arrays
     if isinstance(pv, torch.Tensor):
@@ -143,9 +153,9 @@ def prepare_llava_inputs(template, query, image, tokenizer):
         image_tensor = pv[0]  # list/tuple: first image
 
     if type(image_tensor) != torch.Tensor:
-        image_tensor = torch.tensor(image_tensor, dtype=torch.float32).to("cuda")
+        image_tensor = torch.tensor(image_tensor, dtype=torch.float32).to(device)
     else:
-        image_tensor = image_tensor.to("cuda")
+        image_tensor = image_tensor.to(device)
 
     # Vision tower expects [B, C, H, W]
     if image_tensor.ndim == 3:
@@ -164,7 +174,7 @@ def prepare_llava_inputs(template, query, image, tokenizer):
             padding="longest",
             add_special_tokens=False,
         )
-        .to("cuda")
+        .to(device)
         .input_ids
     )
     token_after = (
@@ -174,18 +184,18 @@ def prepare_llava_inputs(template, query, image, tokenizer):
             padding="longest",
             add_special_tokens=False,
         )
-        .to("cuda")
+        .to(device)
         .input_ids
     )
     bos = (
-        torch.ones([batch_size, 1], dtype=torch.int64, device="cuda")
+        torch.ones([batch_size, 1], dtype=torch.int64, device=device)
         * tokenizer.bos_token_id
     )
 
     img_start_idx = len(token_before[0]) + 1
     img_end_idx = img_start_idx + IMAGE_TOKEN_LENGTH
     image_token = (
-        torch.ones([batch_size, 1], dtype=torch.int64, device="cuda")
+        torch.ones([batch_size, 1], dtype=torch.int64, device=device)
         * IMAGE_TOKEN_INDEX
     )
 
@@ -380,8 +390,9 @@ class ModelLoader:
 
     def prepare_inputs_for_model(self, template, query, image):
         if self.model_name == "llava-1.5":
+            _dev = next(self.llm_model.parameters()).device
             questions, img_start_idx, img_end_idx, kwargs = prepare_llava_inputs(
-                template, query, image, self.tokenizer
+                template, query, image, self.tokenizer, device=_dev
             )
         elif self.model_name == "minigpt4":
             questions, img_start_idx, img_end_idx, kwargs = prepare_minigpt4_inputs(
@@ -440,18 +451,23 @@ class ModelLoader:
             chunk_before = [chunk[0] for chunk in chunks]
             chunk_after = [chunk[1] for chunk in chunks]
 
+            _neg_dev = (
+                next(self.llm_model.parameters()).device
+                if self.model_name == "llava-1.5"
+                else torch.device("cuda")
+            )
             token_before = self.tokenizer(
                 chunk_before,
                 return_tensors="pt",
                 padding="longest",
                 add_special_tokens=False,
-            ).input_ids.to("cuda")
+            ).input_ids.to(_neg_dev)
             token_after = self.tokenizer(
                 chunk_after,
                 return_tensors="pt",
                 padding="longest",
                 add_special_tokens=False,
-            ).input_ids.to("cuda")
+            ).input_ids.to(_neg_dev)
 
             batch_size = len(questions)
             bos = (
@@ -481,10 +497,10 @@ class ModelLoader:
             raise NotImplementedError(
                 "prepare_llava_kwargs_from_processed is only implemented for llava-1.5"
             )
-        _, _, _, kwargs = prepare_llava_inputs(
-            template, query, image_processed, self.tokenizer
-        )
         dev = next(self.llm_model.parameters()).device
+        _, _, _, kwargs = prepare_llava_inputs(
+            template, query, image_processed, self.tokenizer, device=dev
+        )
         out = {}
         for k, v in kwargs.items():
             if torch.is_tensor(v):
